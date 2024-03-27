@@ -1,0 +1,38 @@
+﻿@model ShoppingCart.DataAccess.ViewModels.CategoryViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="d-flex bd-highlight">
+        <div class="flex-grow-1 bd-highlight display-6">Categories</div>
+        <div class="bd-highlight"><a class="btn btn-primary btn-sm" asp-controller="Category" asp-action="CreateUpdate">Create Category</a></div>
+    </div>
+    <hr />
+
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Display Order</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Categories)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.DisplayOrder</td>
+                    <td>
+                        <a asp-action="CreateUpdate" asp-controller="Category" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-action="Delete" asp-controller="Category" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

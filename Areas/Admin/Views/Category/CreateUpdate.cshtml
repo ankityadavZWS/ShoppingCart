@@ -1,0 +1,39 @@
+﻿@model ShoppingCart.DataAccess.ViewModels.CategoryViewModel
+
+@{
+    ViewData["Title"] = "CreateUpdate";
+}
+
+<div class="jumbotron bg-light p-3">
+    <div class="">
+        <h2 class="display-6">@((Model.Category == null || Model.Category.Id == 0) ? "Create" : "Update") Category</h2>
+    </div>
+    <hr class="my-4">
+    <form asp-action="CreateUpdate" method="post">
+        <input type="hidden" asp-for="Category.Id" />
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-group mb-2">
+            <label asp-for="Category.Name">Category Name</label>
+            <input asp-for="Category.Name" class="form-control" />
+            <span class="text-danger" asp-validation-for="Category.Name"></span>
+        </div>
+
+        <div class="form-group mb-2">
+            <label asp-for="Category.DisplayOrder">Display Order</label>
+            <input asp-for="Category.DisplayOrder" class="form-control" />
+            <span class="text-danger" asp-validation-for="Category.DisplayOrder"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="@((Model.Category == null || Model.Category.Id == 0) ? "Create" : "Update")" class="btn btn-primary btn-sm" />
+            <a asp-controller="Category" asp-action="Index" class="btn btn-warning btn-sm">Back</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
